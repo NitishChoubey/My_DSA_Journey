@@ -1,5 +1,7 @@
 package Backtracking;
 
+import java.util.Arrays;
+
 public class MazeWithObstacles {
     public static void main(String[] args) {
 
@@ -21,7 +23,11 @@ public class MazeWithObstacles {
                 {true , true , true}
         } ;
 
-        allPaths("" , board , 0 , 0) ;
+        int[][] path = new int[board.length][board[0].length] ;
+
+        //allPaths("" , board , 0 , 0) ;
+
+        allPathsPrint("" , board , 0 , 0 , path , 1) ;
 
 
 
@@ -85,6 +91,54 @@ public class MazeWithObstacles {
 
         //ab function over mtlv destination tk pahuch gye ...phir se saare changes ko revert kr do
         maze[row][col] = true ;
+
+
+    }
+
+    public static void  allPathsPrint(String p , boolean[][] maze , int row , int col , int[][] path , int step){
+
+        if(row == maze.length - 1 && col == maze[0].length - 1){
+            path[row][col] = step ;
+            for(int[] arr: path){
+                System.out.println(Arrays.toString(arr));
+            }
+            System.out.println(p);
+            System.out.println();
+            return ;
+        }
+
+        if(!maze[row][col]){
+            return ;
+        }
+
+        //visited cells ko false kr do , taaki particular path me piche naa jaa paaye
+        maze[row][col] = false ;
+        path[row][col] = step ;
+
+        //condition for going down
+        if(row < maze.length - 1){
+            allPathsPrint(p + 'D'  ,maze , row  +1 , col , path , step + 1) ;
+        }
+
+        //condition of going UP
+        if(row > 0){
+            allPathsPrint(p + 'U' , maze , row - 1 , col , path , step + 1 ) ;
+        }
+
+        //condition of going right
+        if(col < maze[0].length - 1){
+            allPathsPrint(p + 'R' , maze , row , col + 1 , path , step + 1);
+        }
+
+        //condition of going left
+        if(col > 0){
+            allPathsPrint(p + 'L' , maze , row , col - 1 , path , step + 1) ;
+        }
+
+        //ab function over mtlv destination tk pahuch gye ...phir se saare changes ko revert kr do
+        maze[row][col] = true ;
+        path[row][col] = 0;
+
 
 
     }

@@ -4,12 +4,12 @@ public class fibonacciNumber {
 
     public static void main(String[] args) {
 
-        //
-        // System.out.println(fibonaaciNumber1 (6));
 
-        for (int i = 0 ; i < 11 ; i++){
-            System.out.println(fiboFormula(i));
-        }
+         System.out.println(fibonaaciNumber1 (6));
+
+//        for (int i = 0 ; i < 11 ; i++){
+//            System.out.println(fiboFormula(i));
+//        }
     }
 
     static int fiboFormula(int n){
@@ -21,6 +21,6 @@ public class fibonacciNumber {
             return n ;
         }
 
-        return fibonaaciNumber1(n-1)  + fibonaaciNumber1(n-1) ;
+        return fibonaaciNumber1(n-1)  + fibonaaciNumber1(n-2) ;
     }
 }
